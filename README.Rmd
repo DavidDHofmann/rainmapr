@@ -1,26 +1,30 @@
+---
+output:
+  github_document:
+  html_preview: false
+editor_options:
+  chunk_output_type: console
+---
 
 # rainmapr <img src="man/figures/rainmapr.png" align="right" width="150" height="150"/>
-
-`rainmapr` is an R-package that allows you to download CHIRPS data in
-raster format. At the moment, data can only be downloaded globally. Data
-is available at 0.25 and 0.05 degrees resolution and either as daily or
-monthly averaged product.
+`rainmapr` is an R-package that allows you to download CHIRPS data in raster
+format. At the moment, data can only be downloaded globally. Data is available
+at 0.25 and 0.05 degrees resolution and either as daily or monthly averaged
+product.
 
 ## Installation
+To install `rainmapr` you need to have the package `devtools` installed. You can
+then install `rainmapr` using:
 
-To install `rainmapr` you need to have the package `devtools` installed.
-You can then install `rainmapr` using:
-
-``` r
+```r
 library(devtools)
 install_github("DavidDHofmann/rainmapr")
 ```
 
 ## Example
-
 Here is a little example how you can download data
 
-``` r
+```r
 # Load required packages
 library(raster)
 library(rainmapr)
