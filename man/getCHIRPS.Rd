@@ -5,8 +5,8 @@
 \title{Function to download CHIRPS data}
 \usage{
 getCHIRPS(
-  tres = c("daily", "monthly"),
-  sres = c(0.05, 0.25),
+  tres = "monthly",
+  sres = 0.05,
   dates = NULL,
   dsn = getwd(),
   overwrite = FALSE
@@ -15,7 +15,8 @@ getCHIRPS(
 \arguments{
 \item{tres}{numeric. Temporal resolution. \code{"daily"} or \code{"monthly"}}
 
-\item{sres}{numeric. Spatial resolution. \code{0.05} or \code{0.25}}
+\item{sres}{numeric. Spatial resolution. \code{0.05} or \code{0.25}. Note
+that monthly data is only available at a resolution of 0.05 degrees.}
 
 \item{dates}{date. Date(s) for which you want to download CHIRPS data}
 
@@ -38,7 +39,7 @@ library(raster)
 # Download data
 files <- getCHIRPS(
     tres       = "daily"
-  , sres       = 0.05
+  , sres       = 0.25
   , dates      = as.Date("2016-12-31")
   , dsn        = tempdir()
   , overwrite  = T
