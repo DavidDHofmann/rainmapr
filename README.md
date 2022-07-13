@@ -1,4 +1,6 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # rainmapr <img src="man/figures/rainmapr.png" align="right" width="150" height="150"/>
 
 `rainmapr` is an R-package that allows you to download CHIRPS data in
@@ -8,12 +10,12 @@ monthly averaged product.
 
 ## Installation
 
-To install `rainmapr` you need to have the package `devtools` installed.
-You can then install `rainmapr` using:
+You can install the development version of rainmapr from
+[GitHub](https://github.com/) with:
 
 ``` r
-library(devtools)
-install_github("DavidDHofmann/rainmapr")
+# install.packages("devtools")
+devtools::install_github("DavidDHofmann/rainmapr")
 ```
 
 ## Example
@@ -22,7 +24,7 @@ Here is a little example how you can download data
 
 ``` r
 # Load required packages
-library(raster)
+library(terra)
 library(rainmapr)
 
 # Download chirps data
@@ -30,15 +32,18 @@ chirps_files <- getCHIRPS(
     tres      = "monthly"
   , sres      = 0.05
   , dates     = c("2020-06-01", "2020-12-01")
+  , dsn       = tempdir()
   , overwrite = T
 )
 
 # Load data into the r session
-r <- stack(chirps_files)
+r <- rast(chirps_files)
 
-# Reclassify
-r <- reclassify(r, c(-Inf, 0, NA))
+# Reclassify values for easier plotting
+r <- classify(r, rcl = cbind(-Inf, 0, NA))
 
 # Visualize
-plot(r)
+plot(r, nr = 2)
 ```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />

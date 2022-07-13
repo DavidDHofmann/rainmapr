@@ -1,10 +1,17 @@
 ---
-output:
-  github_document:
-  html_preview: false
-editor_options:
-  chunk_output_type: console
+output: github_document
 ---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # rainmapr <img src="man/figures/rainmapr.png" align="right" width="150" height="150"/>
 `rainmapr` is an R-package that allows you to download CHIRPS data in raster
@@ -13,20 +20,19 @@ at 0.25 and 0.05 degrees resolution and either as daily or monthly averaged
 product.
 
 ## Installation
-To install `rainmapr` you need to have the package `devtools` installed. You can
-then install `rainmapr` using:
-
-```r
-library(devtools)
-install_github("DavidDHofmann/rainmapr")
+You can install the development version of rainmapr from
+[GitHub](https://github.com/) with:
+``` r
+# install.packages("devtools")
+devtools::install_github("DavidDHofmann/rainmapr")
 ```
 
 ## Example
 Here is a little example how you can download data
 
-```r
+```{r, echo = T, warning = F, message = F}
 # Load required packages
-library(raster)
+library(terra)
 library(rainmapr)
 
 # Download chirps data
@@ -34,15 +40,16 @@ chirps_files <- getCHIRPS(
     tres      = "monthly"
   , sres      = 0.05
   , dates     = c("2020-06-01", "2020-12-01")
+  , dsn       = tempdir()
   , overwrite = T
 )
 
 # Load data into the r session
-r <- stack(chirps_files)
+r <- rast(chirps_files)
 
-# Reclassify
-r <- reclassify(r, c(-Inf, 0, NA))
+# Reclassify values for easier plotting
+r <- classify(r, rcl = cbind(-Inf, 0, NA))
 
 # Visualize
-plot(r)
+plot(r, nr = 2)
 ```
