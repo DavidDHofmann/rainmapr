@@ -46,4 +46,4 @@ r <- classify(r, rcl = cbind(-Inf, 0, NA))
 plot(r, nr = 2)
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />

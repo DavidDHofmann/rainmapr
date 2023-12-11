@@ -22,7 +22,7 @@ product.
 ## Installation
 You can install the development version of rainmapr from
 [GitHub](https://github.com/) with:
-``` r
+```{r, eval=F}
 # install.packages("devtools")
 devtools::install_github("DavidDHofmann/rainmapr")
 ```
